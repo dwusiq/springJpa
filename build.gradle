@@ -55,10 +55,26 @@ List junit = ["junit:junit:4.12"]
 List mockito_core = ["org.mockito:mockito-core:2.8.47"]
 /*servlet支持jar包*/
 List servlet = ['javax.servlet:javax.servlet-api:3.1.0']
-/*入参校验支持包*/
-List validator = ['org.hibernate:hibernate-validator:5.4.1.Final']
+
+/*hibernate支持包*/
+List hibernate = [
+        /*入参校验*/
+        'org.hibernate:hibernate-validator:5.4.1.Final',
+        /*核心包*/
+        'org.hibernate:hibernate-core:4.3.9.Final',
+        /*@Entity包*/
+        'org.hibernate:hibernate-entitymanager:4.3.9.Final',
+]
+
+/*核心包*/
+List hibernate_commons_annotations = [
+        'org.hibernate.common:hibernate-commons-annotations:4.0.1.Final'
+]
+
+/*servlet支持jar包*/
+List jpa = ['org.springframework.data:spring-data-jpa:1.3.2.RELEASE']
 
 dependencies {
-    compile logger,spring,mybatis,springmybatis,commonsdbcp,mysql,jackson,fastjson,junit,mockito_core,servlet,validator
-    runtime logger,spring,mybatis,springmybatis,commonsdbcp,mysql,jackson,fastjson,junit,mockito_core,servlet,validator
+    compile logger,spring,mybatis,springmybatis,commonsdbcp,mysql,jackson,fastjson,junit,mockito_core,servlet,hibernate,jpa,hibernate_commons_annotations
+    runtime logger,spring,mybatis,springmybatis,commonsdbcp,mysql,jackson,fastjson,junit,mockito_core,servlet,hibernate,jpa,hibernate_commons_annotations
 }
