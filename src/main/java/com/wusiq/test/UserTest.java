@@ -1,10 +1,7 @@
 package com.wusiq.test;
 
 import com.alibaba.fastjson.JSON;
-import com.wusiq.DTO.req.ReqAddRowDto;
-import com.wusiq.DTO.req.ReqDeleteRowDto;
-import com.wusiq.DTO.req.ReqQueryRowDto;
-import com.wusiq.DTO.req.ReqUpdateRowDto;
+import com.wusiq.DTO.req.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -76,7 +73,7 @@ public class UserTest {
     public void testDeleteUser() throws Exception {
         //组织参数
         ReqDeleteRowDto dto = new ReqDeleteRowDto();
-        dto.setId(12);
+        dto.setId(10);
 
         //参数实体转换成json
         String json = JSON.toJSONString(dto);
@@ -105,7 +102,7 @@ public class UserTest {
         //组织参数
         ReqUpdateRowDto dto = new ReqUpdateRowDto();
         dto.setId(11);
-        dto.setUserNmae("daee");
+        dto.setUserNmae("ooo");
         dto.setUserAge(32);
 
 
@@ -160,7 +157,7 @@ public class UserTest {
     @Test
     public void testQueryRowList() throws Exception {
         MvcResult result = mockMvc.perform(
-                MockMvcRequestBuilders.get("/userManage/queryRowList.json")
+                MockMvcRequestBuilders.get("/userManage/queryLikeUserName.json")
         )
                 .andDo(MockMvcResultHandlers.print())//打印调试的结果到控制台
                 .andReturn();//返回MvcResult参数
@@ -170,6 +167,66 @@ public class UserTest {
         //下面是自定义的结果判断
         Assert.assertNotNull(result.getResponse().getContentAsString());
     }
+
+
+    /**
+     * 测试like模糊查询
+     */
+    @Test
+    public void queryLikeUserName() throws Exception {
+        //组织参数
+        ReqQueryLikeUserNameDto dto = new ReqQueryLikeUserNameDto();
+        dto.setUserName("e");
+
+        //参数实体转换成json
+        String json = JSON.toJSONString(dto);
+
+        MvcResult result = mockMvc.perform(
+                MockMvcRequestBuilders.get("/userManage/queryLikeUserName.json")
+                        .contentType(MediaType.APPLICATION_JSON) //数据的格式
+                        .content(json)
+        )
+                .andDo(MockMvcResultHandlers.print())//打印调试的结果到控制台
+                .andReturn();//返回MvcResult参数
+
+
+
+        //下面是自定义的结果判断
+        Assert.assertNotNull(result.getResponse().getContentAsString());
+        System.out.println(result.getResponse().getContentAsString());
+    }
+
+    /**
+     * 根据条件修改
+     */
+    @Test
+    public void updateUserNameByIdOrAge() throws Exception {
+        //组织参数
+        ReqUpdateUserNameByIdOrAge dto = new ReqUpdateUserNameByIdOrAge();
+        dto.setId(7);
+        dto.setUserAge(32);
+        dto.setUserName("bgegse");
+
+        //参数实体转换成json
+        String json = JSON.toJSONString(dto);
+
+        MvcResult result = mockMvc.perform(
+                MockMvcRequestBuilders.get("/userManage/updateUserNameByIdOrAge.json")
+                        .contentType(MediaType.APPLICATION_JSON) //数据的格式
+                        .content(json)
+        )
+                .andDo(MockMvcResultHandlers.print())//打印调试的结果到控制台
+                .andReturn();//返回MvcResult参数
+
+
+
+        //下面是自定义的结果判断
+        Assert.assertNotNull(result.getResponse().getContentAsString());
+        System.out.println(result.getResponse().getContentAsString());
+    }
+
+
+
 
 
     @Before

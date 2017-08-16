@@ -14,9 +14,9 @@ public class UserEntity implements Serializable{
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-    @Column(name="userName")      //类属性对应着表字段
+    @Column(name="username")        //类属性对应着表字段,用jpa的时候，如果mysql的字段不按约定的规范，则这里的注解用小写
     private String userNmae;
-    @Column(name="userAge")      //类属性对应着表字段
+    @Column(name="userage")      //类属性对应着表字段
     private Integer userAge;
 
     public Integer getId() {

@@ -13,6 +13,6 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<UserEntity,Integer>,UserSpecificationExecutor {
 
     /*根据userName模糊查询*/
-    @Query(value = "select * from t_user where t.userName like ?1%",nativeQuery=true)
+    @Query(value = "select * from t_user where userName like ?1%",nativeQuery=true)
     List<UserEntity> queryLikeUserName(String userName);
 }

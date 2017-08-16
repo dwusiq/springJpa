@@ -4,6 +4,7 @@ import com.wusiq.Dao.UserDao.UserSpecificationExecutor;
 import com.wusiq.entity.UserEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,8 +28,7 @@ public class UserRepositoryImpl implements UserSpecificationExecutor {
     /* 根据用户id和userAge大于某个值的的条件更改userName*/
     @Override
     public void updateUserNameByIdOrAge(UserEntity entity) {
-        String sql = "update t_user set userName='"+entity.getUserNmae()+"'" +
-                " where id="+entity.getId()+" or userAge in(select userAge > "+entity.getUserAge()+")";
+        String sql = String.format("update UserEntity set userName='%s' where id=%d and userAge = %d", entity.getUserNmae(), entity.getId(), entity.getUserAge());
         int i = em.createQuery(sql).executeUpdate();
         if(i>0){
             LOGGER.info("update t_user success,count:"+i);

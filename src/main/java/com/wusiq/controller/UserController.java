@@ -102,7 +102,7 @@ public class UserController {
 
     /*查like*/
     @ResponseBody
-    @RequestMapping(value = "/queryLikeUserName.json",method = RequestMethod.GET)
+    @RequestMapping(value = "/updateUserNameByIdOrAge.json",method = RequestMethod.GET)
     public String updateUserNameByIdOrAge(@Validated @RequestBody ReqUpdateUserNameByIdOrAge reqUpdateUserNameByIdOrAge, BindingResult result){
         LOGGER.info("UserController.updateUserNameByIdOrAge.start.param:{}", JSON.toJSONString(reqUpdateUserNameByIdOrAge));
         UserEntity entity = new UserEntity();
