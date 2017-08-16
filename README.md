@@ -11,7 +11,7 @@
 11、EntityManager
 12、springMvc
 13、视图解释器
-14、
+14、JPA混合SQL
 15、
 
 
